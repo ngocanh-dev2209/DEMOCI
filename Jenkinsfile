@@ -16,7 +16,17 @@ pipeline {
         }
 
         stage('Build') {
-            steps {`
+            steps {
+                echo 'Đang biên dịch ứng dụng (Build Release)...'
+                bat 'dotnet build WebBanHang.csproj --configuration Release'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                echo 'Đang chạy Unit Test...'
+                bat 'dotnet test WebBanHang.csproj --no-restore'
+            }
         }
     }
 
